@@ -1,0 +1,47 @@
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 11px;
+    background: #e9ecef;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+}
+
+
+.timeline-info {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.timeline-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.timeline-content {
+    padding: 0.5rem 0;
+}
+.badge{
+    color: white !important;
+}
+.mt-20{
+    margin-top: 20px;
+}
+.dropdown-menu-right {
+    right: 0 !important;
+    left: auto !important;
+}
