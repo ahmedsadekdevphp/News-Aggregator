@@ -16,13 +16,12 @@ class FetchNewsService
      *
      * The `fromDate` is set to 10 minutes ago, which will be used as the starting point for fetching news
      * published since that time.
-     *
+     *@param array $newsProviders
      * @return void
      */
-    public static function fetch()
+    public static function fetch($newsProviders)
     {
-        $fromDate = now()->subMinutes(10);
-        $newsProviders = config('newsproviders.providers');
+        $fromDate = now()->subMinutes(config('newsproviders.timeFrequency'));
         foreach ($newsProviders as $provider => $config) {
             self::fetchProviderNews($provider, $config, $fromDate);
         }
@@ -74,7 +73,17 @@ class FetchNewsService
         return $newsData;
     }
 
-
+    /**
+     * Maps API response data to database fields using a field mapping configuration.
+     *
+     * @param array $item An associative array representing the API response data.
+     * @param array $config Configuration array containing a 'fields_map' key, which maps
+     *                      API fields to their corresponding database fields.
+     *
+     * @return array Returns an array with database fields as keys and their corresponding
+     *               values extracted from the API response. If a value is not found in
+     *               the API response, it defaults to null.
+     */
     private static function mapResponse(array $item, array $config): array
     {
         return collect($config['fields_map'])->mapWithKeys(function ($apiField, $dbField) use ($item) {
@@ -97,11 +106,12 @@ class FetchNewsService
                 [
                     'title' => $newsItem['title'],
                     'url' => $newsItem['url'],
-                    'publised_at' => \Carbon\Carbon::parse($newsItem['publised_at'])->format('Y-m-d H:i:s'),
+                    'published_at' => \Carbon\Carbon::parse($newsItem['published_at'])->format('Y-m-d H:i:s'),
                     'category' => $newsItem['category'] ?? 'Uncategorized',
                     'type' => $newsItem['type'],
                     'source_id' => $newsItem['source_id'],
-                    'source' => $source
+                    'source' => $source,
+                    'author' => $newsItem['author']
                 ]
             );
         }

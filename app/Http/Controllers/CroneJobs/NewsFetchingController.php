@@ -8,7 +8,9 @@ use App\Services\FetchNewsService;
 
 class NewsFetchingController extends Controller
 {
-    public function fetchNews() {
-        FetchNewsService::fetch();
+    public function fetchNews()
+    {
+        $newsProviders = config('newsproviders.providers');
+        FetchNewsService::fetch($newsProviders);
     }
 }

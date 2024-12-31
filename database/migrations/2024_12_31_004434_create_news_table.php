@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title')->nullable();
             $table->string('url')->nullable();
-            $table->timestamp('publised_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->string('category')->nullable();
             $table->string('type')->nullable();
             $table->string('source_id')->nullable();

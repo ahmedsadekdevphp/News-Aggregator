@@ -12,7 +12,7 @@ return [
             'fields_map' => [
                 'title' => 'headline.main',
                 'url' => 'web_url',
-                'publised_at' => 'pub_date',
+                'published_at' => 'pub_date',
                 'category' => 'section_name',
                 'type' => 'type_of_material',
                 'source_id' => '_id',
@@ -32,7 +32,7 @@ return [
             'fields_map' => [
                 'title' => 'webTitle',
                 'url' => 'webUrl',
-                'publised_at' => 'webPublicationDate',
+                'published_at' => 'webPublicationDate',
                 'category' => 'sectionName',
                 'type' => 'pillarName',
                 'source_id' => 'id',
@@ -51,7 +51,7 @@ return [
             'fields_map' => [
                 'title' => 'title',
                 'url' => 'url',
-                'publised_at' => 'publishedAt',
+                'published_at' => 'publishedAt',
                 'category' => 'sectionName',
                 'type' => '',
                 'source_id' => '',
@@ -59,5 +59,5 @@ return [
             ],
         ],
     ],
-
+    'timeFrequency'=>10
 ];
