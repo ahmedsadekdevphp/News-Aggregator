@@ -9,8 +9,6 @@ use App\Services\FetchNewsService;
 class NewsFetchingController extends Controller
 {
     public function fetchNews() {
-
         FetchNewsService::fetch();
-        
     }
 }

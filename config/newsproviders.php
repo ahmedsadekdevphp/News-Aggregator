@@ -10,13 +10,12 @@ return [
             ],
             'response_path' => 'response.docs',
             'fields_map' => [
-                'title' => 'title',
+                'title' => 'headline.main',
                 'url' => 'web_url',
                 'publised_at'=>'pub_date',
-                'category'=>'subsection_name',
+                'category'=>'section_name',
                 'type'=>'type_of_material',
-                'source_id'=>'_id',
-                'image'=>'multimedia[0]["url"]'
+                'source_id'=>'_id'
             ],
 
         ],
@@ -35,9 +34,8 @@ return [
                 'publised_at'=>'webPublicationDate',
                 'category'=>'sectionName',
                 'type'=>'pillarName',
-                'source_id'=>'id',
-                'image'=>''
-            ],
+                'source_id'=>'id'
+                        ],
 
         ],
         'newsapi' => [
@@ -55,8 +53,7 @@ return [
                 'publised_at'=>'publishedAt',
                 'category'=>'sectionName',
                 'type'=>'',
-                'source_id'=>'',
-                'image'=>'urlToImage'
+                'source_id'=>''
             ],
         ],
     ],
