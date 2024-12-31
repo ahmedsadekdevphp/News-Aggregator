@@ -3,7 +3,7 @@ return [
     'providers' => [
         'nytimes' => [
             'url' => 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
-            'date_key'=>'begin_date',
+            'date_key' => 'begin_date',
             'request_body' => [
                 'begin_date' => '',
                 'api-key' => 'uY7e9Nqy43NpItFAV9IkJ0kMTQDMF0u0',
@@ -12,16 +12,17 @@ return [
             'fields_map' => [
                 'title' => 'headline.main',
                 'url' => 'web_url',
-                'publised_at'=>'pub_date',
-                'category'=>'section_name',
-                'type'=>'type_of_material',
-                'source_id'=>'_id'
+                'publised_at' => 'pub_date',
+                'category' => 'section_name',
+                'type' => 'type_of_material',
+                'source_id' => '_id',
+                'author' => 'byline.original'
             ],
 
         ],
         'guardian' => [
             'url' => 'https://content.guardianapis.com/search',
-            'date_key'=>'from-date',
+            'date_key' => 'from-date',
             'request_body' => [
                 'from-date' => '',
                 'type' => 'article',
@@ -31,16 +32,16 @@ return [
             'fields_map' => [
                 'title' => 'webTitle',
                 'url' => 'webUrl',
-                'publised_at'=>'webPublicationDate',
-                'category'=>'sectionName',
-                'type'=>'pillarName',
-                'source_id'=>'id'
-                        ],
-
+                'publised_at' => 'webPublicationDate',
+                'category' => 'sectionName',
+                'type' => 'pillarName',
+                'source_id' => 'id',
+                'author' => ''
+            ],
         ],
         'newsapi' => [
             'url' => 'https://newsapi.org/v2/top-headlines',
-            'date_key'=>'from',
+            'date_key' => 'from',
             'request_body' => [
                 'country' => 'us',
                 'from' => '',
@@ -50,10 +51,11 @@ return [
             'fields_map' => [
                 'title' => 'title',
                 'url' => 'url',
-                'publised_at'=>'publishedAt',
-                'category'=>'sectionName',
-                'type'=>'',
-                'source_id'=>''
+                'publised_at' => 'publishedAt',
+                'category' => 'sectionName',
+                'type' => '',
+                'source_id' => '',
+                'author' => 'author'
             ],
         ],
     ],
