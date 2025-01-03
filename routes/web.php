@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 
-use App\Http\Controllers\CroneJobs\NewsFetchingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +15,6 @@ use App\Http\Controllers\CroneJobs\NewsFetchingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,8 +27,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
-
-Route::get('fetchNews', [NewsFetchingController::class, 'fetchNews']);
 
 
 require __DIR__ . '/auth.php';

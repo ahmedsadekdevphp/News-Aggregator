@@ -41,6 +41,7 @@ class FetchNewsService
             $response = Http::withOptions([
                 'verify' => false,
             ])->get($config['url'],  $config['request_body']);
+
             if ($response->successful()) {
                 $data = data_get($response->json(), $config['response_path'], []);
                 $newsData = self::formatResponse($data, $config);
@@ -108,7 +109,7 @@ class FetchNewsService
                     'url' => $newsItem['url'],
                     'published_at' => \Carbon\Carbon::parse($newsItem['published_at'])->format('Y-m-d H:i:s'),
                     'category' => $newsItem['category'] ?? config('news.Uncategorized'),
-                    'type' => $newsItem['type'],
+                    'type' => $newsItem['type']?? config('news.Unknown'),
                     'source_id' => $newsItem['source_id'],
                     'source' => $source,
                     'author' => $newsItem['author']?? config('news.Unknown')
