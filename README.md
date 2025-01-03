@@ -44,7 +44,7 @@ Here’s an example configuration for a news provider:
 
 1. **Clone the Repository**  
    ```bash  
-   git clone [repository-url]  
+   git clone [https://github.com/ahmedsadekdevphp/News-Aggregator.git]  
    cd news
    ```  
 
@@ -93,3 +93,5 @@ Here’s an example configuration for a news provider:
      ```bash  
     php artisan news:fetch 
      ```
+## Demo
+[https://frontend.sadekdev.tech/]
