@@ -87,5 +87,9 @@ Here’s an example configuration for a news provider:
 
 7. **run laravel Scedule** 
      ```bash  
-    php artisan schedule:run
+    php artisan schedule:run 
+     ```
+8. **Ftech News Command** 
+     ```bash  
+    php artisan news:fetch 
      ```

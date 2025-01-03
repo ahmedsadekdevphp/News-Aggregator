@@ -38,9 +38,6 @@ RUN chown -R www-data:www-data /var/www/html  \
 # Install Composer dependencies
 RUN composer install --no-interaction --optimize-autoloader
 
-# Run migrations automatically (optional, use with caution in production)
-RUN php artisan migrate --force
-
 # Expose port 9000
 EXPOSE 9000
 
