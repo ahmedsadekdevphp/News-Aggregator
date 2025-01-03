@@ -1,45 +1,58 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Services;
 
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Http;
+use App\Models\News;
 use App\Services\FetchNewsService;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mockery;
-use App\Models\News;
 
 class FetchNewsServiceTest extends TestCase
 {
     use RefreshDatabase;
+
     public function testFetch()
     {
         $newsProviders = [
             'provider1' => [
-                'url' => 'http://example.com/api/news',
-                'request_body' => ['key' => 'value'],
-                'response_path' => 'data',
-                'date_key' => 'date',
+                'url' => 'https://provider1.com/api/news',
+                'date_key' => 'from-date',
+                'request_body' => [],
+                'response_path' => 'data.news',
                 'fields_map' => [
-                    'title' => 'title',
-                    'url' => 'url',
-                    'published_at' => 'published_at',
+                    'title' => 'news_title',
+                    'url' => 'news_url',
+                    'published_at' => 'news_date',
+                    'type'=>'type',
+                    'source_id'=>'source_id'
                 ],
+                'date_key' => 'published_at',
             ],
         ];
 
         Http::fake([
-            'http://example.com/api/news' => Http::response([
+            'https://provider1.com/api/news' => Http::response([
                 'data' => [
-                    [
-                        'title' => 'Test News',
-                        'url' => 'http://example.com',
-                        'published_at' => now()->toDateTimeString()
-                    ]
-                ]
-            ], 200)
+                    'news' => [
+                        [
+                            'news_title' => 'Test News',
+                            'news_url' => 'https://test.com',
+                            'news_date' => '2025-01-01 10:00:00',
+                            'type'=>'type',
+                            'source_id'=>'jjjjjj'
+                        ],
+                    ],
+                ],
+            ], 200),
         ]);
+
         FetchNewsService::fetch($newsProviders);
+
+        $this->assertDatabaseHas('news', [
+            'title' => 'Test News',
+            'url' => 'https://test.com',
+            'published_at' => '2025-01-01 10:00:00',
+        ]);
     }
 }

@@ -21,7 +21,7 @@ class FetchNewsService
      */
     public static function fetch($newsProviders)
     {
-        $fromDate = now()->subMinutes(config('newsproviders.timeFrequency'));
+        $fromDate = now()->subMinutes(config('news.fetch_time_Frequency'));
         foreach ($newsProviders as $provider => $config) {
             self::fetchProviderNews($provider, $config, $fromDate);
         }
@@ -107,11 +107,11 @@ class FetchNewsService
                     'title' => $newsItem['title'],
                     'url' => $newsItem['url'],
                     'published_at' => \Carbon\Carbon::parse($newsItem['published_at'])->format('Y-m-d H:i:s'),
-                    'category' => $newsItem['category'] ?? 'Uncategorized',
+                    'category' => $newsItem['category'] ?? config('news.Uncategorized'),
                     'type' => $newsItem['type'],
                     'source_id' => $newsItem['source_id'],
                     'source' => $source,
-                    'author' => $newsItem['author']
+                    'author' => $newsItem['author']?? config('news.Unknown')
                 ]
             );
         }

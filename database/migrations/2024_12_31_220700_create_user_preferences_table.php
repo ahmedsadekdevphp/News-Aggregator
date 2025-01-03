@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_preferences', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->longText('preferred_sources')->nullable();
+            $table->longText('preferred_categories')->nullable();
+            $table->longText('preferred_authors')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
