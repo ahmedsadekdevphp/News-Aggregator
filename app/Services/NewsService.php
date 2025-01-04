@@ -37,7 +37,7 @@ class NewsService
                 Carbon::parse($request->end_date)->endOfDay()
             ]);
         }
-        return $query->orderBY('published_at', 'asc')->paginate(config('news.search_news_pagination'));
+        return $query->orderBY('published_at', 'desc')->paginate(config('news.search_news_pagination'));
     }
 
     /**
@@ -59,6 +59,6 @@ class NewsService
                 $query->orwhereIn('author', $preferences['preferred_authors']);
             }
         }
-        return  $query->orderBY('published_at', 'asc')->paginate(config('news.news_feed_pagination'));
+        return  $query->orderBY('published_at', 'desc')->paginate(config('news.news_feed_pagination'));
     }
 }
